@@ -69,7 +69,7 @@ public enum Operators {
         }
 
         private static boolean iLike(String str1, String str2) {
-            return Pattern.compile(str2.replaceAll("%", ".*"), Pattern.CASE_INSENSITIVE).matcher(str1).matches();
+            return Pattern.compile(str2.replaceAll("%", ".*"), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE).matcher(str1).matches();
         }
     },
     HIGHER_OR_EQUALS(">=", 0) {

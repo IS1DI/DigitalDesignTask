@@ -22,7 +22,6 @@ public class JavaSchoolStarter {
     public List<Map<String, Object>> execute(String query) {
         listOfObjects = patternAllObj.matcher(query).results().map(x -> convertToObj(x.group())).toList();
         index = 0;
-        List<Map<String, Object>> result = null;
         while (index < listOfObjects.size() && listOfObjects.get(index) instanceof String str && (
                 str.equalsIgnoreCase("SELECT") ||
                         str.equalsIgnoreCase("UPDATE") ||
@@ -221,6 +220,9 @@ public class JavaSchoolStarter {
                     if (listOfToken.get(i).getOperator().getType() == 0) {
                         result.add(listOfToken.get(i));
                     } else if (listOfToken.get(i).getOperator().getType() < 3) {
+                        if(stack.isEmpty()){
+                            stack.push(listOfToken.get(i));
+                        }else
                         if (stack.peek().getOperator().getType() <= listOfToken.get(i).getOperator().getType()) {
                             stack.push(listOfToken.get(i));
                         } else {
@@ -250,6 +252,9 @@ public class JavaSchoolStarter {
             if (listOfToken.get(i).getOperator().getType() == 0) {
                 currentResult.add(listOfToken.get(i));
             } else if (listOfToken.get(i).getOperator().getType() < 3) {
+                if(stack.isEmpty()){
+                    stack.push(listOfToken.get(i));
+                }else
                 if (stack.peek().getOperator().getType() <= listOfToken.get(i).getOperator().getType()) {
                     stack.push(listOfToken.get(i));
                 } else {

@@ -2,11 +2,11 @@ package com.digdes.school;
 public class Token {
     private Object val1;
     private Object val2;
-    private OperatorsWhere operator;
-    Token(OperatorsWhere operator){
+    private Operators operator;
+    Token(Operators operator){
         this.operator = operator;
     }
-    Token(Object val1, OperatorsWhere operator, Object val2){
+    Token(Object val1, Operators operator, Object val2){
         this.val1 = val1;
         this.operator = operator;
         this.val2 = val2;
@@ -33,11 +33,11 @@ public class Token {
         this.val2 = val2;
     }
 
-    public OperatorsWhere getOperator() {
+    public Operators getOperator() {
         return operator;
     }
 
-    public void setOperator(OperatorsWhere operator) {
+    public void setOperator(Operators operator) {
         this.operator = operator;
     }
 }

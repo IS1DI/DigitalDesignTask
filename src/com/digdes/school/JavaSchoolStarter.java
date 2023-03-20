@@ -157,7 +157,7 @@ public class JavaSchoolStarter {
     private boolean calcValue(Map<String, Object> row, List<Token> value) {
         for (Token token : value) {
             if (token.getVal1() instanceof String str) {
-                if (token.getOperator().equals(OperatorsWhere.EQUALS)) {
+                if (token.getOperator().equals(Operators.EQUALS)) {
 
                     if (row.containsKey(str)) {
                         Object t = Token.getValueOrNullIfEqualsTypes(row.get(str), token.getVal2());
@@ -274,7 +274,7 @@ public class JavaSchoolStarter {
         while (index < listOfObjects.size() && !(listOfObjects.get(index) instanceof String str && str.equalsIgnoreCase("WHERE"))) {
             if (listOfObjects.get(index) instanceof String str && str.equalsIgnoreCase("VALUES")) {
                 throw new IllegalArgumentException("too many VALUES");
-            } else if (listOfObjects.get(index) instanceof OperatorsWhere ow) {
+            } else if (listOfObjects.get(index) instanceof Operators ow) {
                 if (curToken.getVal1() != null) {
                     if (curToken.getOperator() != null) {
                         throw new IllegalArgumentException("illegal format");
@@ -302,7 +302,7 @@ public class JavaSchoolStarter {
         List<Token> allTokens = new ArrayList<>();
         Token curToken = new Token();
         while (index < listOfObjects.size() && !(listOfObjects.get(index) instanceof String str && (str.equalsIgnoreCase("VALUES") || str.equalsIgnoreCase("WHERE")))) {
-            if (listOfObjects.get(index) instanceof OperatorsWhere ow) {
+            if (listOfObjects.get(index) instanceof Operators ow) {
                 if (curToken.getVal1() == null) {
                     if (ow.getType() == 0) {
                         throw new IllegalArgumentException("two operators");
@@ -340,7 +340,7 @@ public class JavaSchoolStarter {
                     return Double.valueOf(obj);
                 } catch (Exception exx) {
                     try {
-                        return OperatorsWhere.getByOperator(obj.toUpperCase());
+                        return Operators.getByOperator(obj.toUpperCase());
                     } catch (Exception exxx) {
                         return obj;
                     }

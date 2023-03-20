@@ -2,7 +2,7 @@ package com.digdes.school;
 
 import java.util.regex.Pattern;
 
-public enum OperatorsWhere {
+public enum Operators {
 
     CLOSE_BRACKET(")",3) {
         @Override
@@ -103,7 +103,7 @@ public enum OperatorsWhere {
     private final String operator;
     private final int type;
 
-    OperatorsWhere(String operator, int type) {
+    Operators(String operator, int type) {
         this.operator = operator;
         this.type = type;
     }
@@ -111,8 +111,8 @@ public enum OperatorsWhere {
     public int getType() {
         return type;
     }
-    public static OperatorsWhere getByOperator(String str){
-        for(OperatorsWhere i : OperatorsWhere.values()){
+    public static Operators getByOperator(String str){
+        for(Operators i : Operators.values()){
             if(i.getNameOperator().equals(str.toUpperCase())){
                 return i;
             }
